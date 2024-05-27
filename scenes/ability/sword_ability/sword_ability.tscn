@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dini725amwnfl"]
+[gd_scene load_steps=6 format=3 uid="uid://dini725amwnfl"]
 
 [ext_resource type="Texture2D" uid="uid://hpmgxym8g133" path="res://scenes/ability/sword_ability/sword.png" id="1_65jmi"]
 
@@ -44,6 +44,18 @@ tracks/2/keys = {
 "method": &"queue_free"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
 
 [sub_resource type="Animation" id="Animation_jsajo"]
 length = 0.001
@@ -71,12 +83,27 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q5llv"]
 _data = {
 "RESET": SubResource("Animation_jsajo"),
 "swing": SubResource("Animation_slmra")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bjdfc"]
+size = Vector2(30, 30)
 
 [node name="SwordAbility" type="Node2D"]
 
@@ -89,3 +116,12 @@ autoplay = "swing"
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_65jmi")
 offset = Vector2(2.08165e-12, -4)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(15, 0)
+shape = SubResource("RectangleShape2D_bjdfc")
+disabled = true
