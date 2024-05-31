@@ -1,11 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpgwbwa1p3m6i"]
+[gd_scene load_steps=8 format=3 uid="uid://bpgwbwa1p3m6i"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_dj72w"]
 [ext_resource type="Texture2D" uid="uid://jgxfupesel5x" path="res://scenes/game_object/player/player.png" id="1_gkmqs"]
+[ext_resource type="PackedScene" uid="uid://d32bhk07dm6w8" path="res://scenes/component/health_component.tscn" id="2_3j6hq"]
 [ext_resource type="PackedScene" uid="uid://b20x14h768t03" path="res://scenes/ability/sword_ability_controller/sword_ability_controller.tscn" id="2_d4cwq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rcy15"]
 radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wmo3f"]
+radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jme47"]
 radius = 5.0
@@ -15,15 +19,21 @@ collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_dj72w")
 
+[node name="HealthComponent" parent="." instance=ExtResource("2_3j6hq")]
+
 [node name="AbilityManager" type="Node" parent="."]
 
 [node name="SwordAbilityController" parent="AbilityManager" instance=ExtResource("2_d4cwq")]
 
-[node name="PickupArea" type="Area2D" parent="."]
+[node name="DamageIntervalTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="PickupArea2D" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea2D"]
 position = Vector2(2.08165e-12, -5)
 shape = SubResource("CircleShape2D_rcy15")
 debug_color = Color(4.3074e-06, 0.636303, 0.406577, 0.42)
@@ -31,6 +41,15 @@ debug_color = Color(4.3074e-06, 0.636303, 0.406577, 0.42)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_gkmqs")
 offset = Vector2(2.08165e-12, -8)
+
+[node name="CollisionArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea2D"]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_wmo3f")
+debug_color = Color(0.921138, 0, 0.380155, 0.419608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.08165e-12, -5)
