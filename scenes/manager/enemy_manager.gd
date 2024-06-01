@@ -14,7 +14,7 @@ var base_spawn_time = 0  # sec
 func _ready():
 	base_spawn_time = timer.wait_time
 	timer.timeout.connect(on_timer_timeout)
-	arena_time_manager.arena_difficulty.connect(on_arena_difficulty_increased)
+	arena_time_manager.arena_difficulty_increased.connect(on_arena_difficulty_increased)
 
 
 func on_timer_timeout():
