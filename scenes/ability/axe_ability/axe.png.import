@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://681m42uc8vit"
-path="res://.godot/imported/globalize-plugin.png-2b006df7f29e299e93099c9ef59b7827.ctex"
+uid="uid://eej7sjoj47rw"
+path="res://.godot/imported/axe.png-d9061886615e248b8d314bf004885af3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://globalize-plugin.png"
-dest_files=["res://.godot/imported/globalize-plugin.png-2b006df7f29e299e93099c9ef59b7827.ctex"]
+source_file="res://scenes/ability/axe_ability/axe.png"
+dest_files=["res://.godot/imported/axe.png-d9061886615e248b8d314bf004885af3.ctex"]
 
 [params]
 
