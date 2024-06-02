@@ -1,12 +1,13 @@
 extends Node
+class_name VialDropComponent
 
 @export_range(0, 1) var drop_rate: float = .5
-@export var health_component: Node
+@export var health_component: HealthComponent
 @export var vial_scene: PackedScene
 
 
 func _ready():
-	(health_component as HealthComponent).died.connect(on_died)
+	health_component.died.connect(on_died)
 
 
 func on_died():
