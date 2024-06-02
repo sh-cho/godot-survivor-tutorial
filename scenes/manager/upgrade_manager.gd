@@ -21,15 +21,24 @@ func apply_upgrade(upgrade: AbilityUpgrade):
 		}
 	else:
 		current_upgrades[upgrade.id]["quantity"] += 1
+	
+	# quantity check -> pool 에서 빼버림
+	if upgrade.max_quantity > 0:
+		var current_quantity = current_upgrades[upgrade.id]["quantity"]
+		if current_quantity >= upgrade.max_quantity:
+			upgrade_pool = upgrade_pool.filter(func (u): return u.id != upgrade.id)
 
 	GameEvents.emit_ability_upgrade_added(upgrade, current_upgrades)
 
 
-# Get random 2 upgrades, without duplicates
+# Get random upgrades from pool (up to 2), without duplicates
 func pick_upgrades() -> Array[AbilityUpgrade]:
-	assert(upgrade_pool.size() >= 2, "upgrade pool size should >= 2")
+	#assert(upgrade_pool.size() >= 2, "upgrade pool size should >= 2")
 	var picked := {}  # <index, null>
 	var next_idx: int
+	var max_pick_size: int = min(upgrade_pool.size(), 2)
+	if max_pick_size == 0:
+		return []
 
 	while true:
 		next_idx = rng.randi_range(0, upgrade_pool.size() - 1)
@@ -38,7 +47,7 @@ func pick_upgrades() -> Array[AbilityUpgrade]:
 		
 		picked[next_idx] = null
 		
-		if picked.size() >= 2:
+		if picked.size() >= max_pick_size:
 			break
 	
 	# https://github.com/godotengine/godot/issues/72566
