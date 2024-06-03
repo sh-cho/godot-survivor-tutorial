@@ -4,7 +4,8 @@ const MAX_RANGE = 150
 
 @export var sword_ability: PackedScene
 
-var damage = 5
+var base_damage = 5
+var additional_damage_percent: float = 1.0
 var base_wait_time
 
 
@@ -38,7 +39,7 @@ func on_timer_timeout():
 	var sword_instance = sword_ability.instantiate() as SwordAbility
 	var foreground_layer = get_tree().get_first_node_in_group("foreground_layer")
 	foreground_layer.add_child(sword_instance)
-	sword_instance.hitbox_component.damage = damage
+	sword_instance.hitbox_component.damage = base_damage * additional_damage_percent
 
 	sword_instance.global_position = enemies[0].global_position
 	sword_instance.global_position += Vector2.RIGHT.rotated(randf_range(0, TAU)) * 4  #살짝 랜덤한 주변으로. (TAU = 2PI = 360 degree)
@@ -49,9 +50,10 @@ func on_timer_timeout():
 
 
 func on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
-	if upgrade.id != "sword_rate":
-		return
-	
-	var percent_reduction = current_upgrades["sword_rate"]["quantity"] * 0.1
-	$Timer.wait_time = base_wait_time * (1 - percent_reduction)
-	$Timer.start()
+	match upgrade.id:
+		"sword_rate":
+			var percent_reduction = current_upgrades["sword_rate"]["quantity"] * 0.1
+			$Timer.wait_time = base_wait_time * (1 - percent_reduction)
+			$Timer.start()
+		"sword_damage":
+			additional_damage_percent = 1 + (current_upgrades["sword_damage"]["quantity"] * 0.15)
