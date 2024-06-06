@@ -1,0 +1,175 @@
+[gd_scene format=3 uid="uid://byk3ajx3w4145"]
+
+[node name="MyPreview" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="col1" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/col1"]
+layout_mode = 2
+text = "Label"
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/col1"]
+layout_mode = 2
+text = "Button"
+
+[node name="ToggleButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/col1"]
+layout_mode = 2
+toggle_mode = true
+text = "Toggle Button"
+
+[node name="DisabledButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/col1"]
+layout_mode = 2
+disabled = true
+text = "Disabled Button"
+
+[node name="FlatButton" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer/col1"]
+layout_mode = 2
+text = "Flat Button"
+flat = true
+
+[node name="CheckButton" type="CheckButton" parent="PanelContainer/MarginContainer/HBoxContainer/col1"]
+layout_mode = 2
+text = "Check Button"
+
+[node name="Checkbox" type="CheckBox" parent="PanelContainer/MarginContainer/HBoxContainer/col1"]
+layout_mode = 2
+text = "Checkbox"
+
+[node name="MenuButton" type="MenuButton" parent="PanelContainer/MarginContainer/HBoxContainer/col1"]
+layout_mode = 2
+text = "Menu Button"
+
+[node name="OptionButton" type="OptionButton" parent="PanelContainer/MarginContainer/HBoxContainer/col1"]
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "Option Button 1"
+popup/item_0/id = 0
+popup/item_1/text = "item2"
+popup/item_1/id = 1
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="PanelContainer/MarginContainer/HBoxContainer/col1"]
+layout_mode = 2
+text = "color
+"
+
+[node name="col2" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/HBoxContainer/col2"]
+layout_mode = 2
+text = "Line Edit"
+
+[node name="DisabledLineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/HBoxContainer/col2"]
+layout_mode = 2
+text = "Disabled Line Edit"
+editable = false
+
+[node name="TextEdit" type="TextEdit" parent="PanelContainer/MarginContainer/HBoxContainer/col2"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+text = "TextEdit"
+
+[node name="SpinBox" type="SpinBox" parent="PanelContainer/MarginContainer/HBoxContainer/col2"]
+layout_mode = 2
+value = 5.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/col2"]
+layout_mode = 2
+
+[node name="VSlider" type="VSlider" parent="PanelContainer/MarginContainer/HBoxContainer/col2/HBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+
+[node name="VSlider2" type="VSlider" parent="PanelContainer/MarginContainer/HBoxContainer/col2/HBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+editable = false
+
+[node name="VScrollBar" type="VScrollBar" parent="PanelContainer/MarginContainer/HBoxContainer/col2/HBoxContainer"]
+layout_mode = 2
+page = 10.0
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/HBoxContainer/col2/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/col2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSlider" type="HSlider" parent="PanelContainer/MarginContainer/HBoxContainer/col2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HSlider2" type="HSlider" parent="PanelContainer/MarginContainer/HBoxContainer/col2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+editable = false
+
+[node name="HScrollBar" type="HScrollBar" parent="PanelContainer/MarginContainer/HBoxContainer/col2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+page = 10.0
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/HBoxContainer/col2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="PanelContainer/MarginContainer/HBoxContainer/col2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+value = 50.0
+
+[node name="col3" type="VBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TabBar" type="TabBar" parent="PanelContainer/MarginContainer/HBoxContainer/col3"]
+layout_mode = 2
+tab_count = 3
+tab_0/title = "Tab 1"
+tab_1/title = "Tab 2"
+tab_2/title = "Tab 3"
+tab_2/disabled = true
+
+[node name="Panel" type="Panel" parent="PanelContainer/MarginContainer/HBoxContainer/col3"]
+custom_minimum_size = Vector2(2.08165e-12, 130)
+layout_mode = 2
+
+[node name="Tree" type="Tree" parent="PanelContainer/MarginContainer/HBoxContainer/col3"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ItemList" type="ItemList" parent="PanelContainer/MarginContainer/HBoxContainer/col3/Tree"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 46.0
+grow_horizontal = 2
+auto_height = true
+item_count = 2
+item_0/text = "Item"
+item_1/text = "Item2"
