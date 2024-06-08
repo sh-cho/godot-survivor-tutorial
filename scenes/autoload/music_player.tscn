@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1hs834u8r8bm"]
+
+[ext_resource type="AudioStream" uid="uid://cdii4krepunmg" path="res://assets/audio/bgm.mp3" id="1_ggdwu"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_ggdwu")
+volume_db = -8.0
+autoplay = true
+bus = &"music"
