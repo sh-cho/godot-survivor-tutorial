@@ -3,5 +3,6 @@
 [ext_resource type="Script" path="res://scenes/component/random_audio_stream_player_2d_component.gd" id="1_bhpwy"]
 
 [node name="RandomAudioStreamPlayer2DComponent" type="AudioStreamPlayer2D"]
+scale = Vector2(0.994512, 1.00219)
 bus = &"sfx"
 script = ExtResource("1_bhpwy")
