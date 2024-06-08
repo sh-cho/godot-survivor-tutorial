@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://vqjgdqb3t2ju"]
+[gd_scene load_steps=9 format=3 uid="uid://vqjgdqb3t2ju"]
 
 [ext_resource type="Script" path="res://scenes/ui/end_screen.gd" id="1_qgnjn"]
 [ext_resource type="PackedScene" uid="uid://dumjej53vmw4d" path="res://scenes/ui/sound_button.tscn" id="2_4hyb7"]
+[ext_resource type="AudioStream" uid="uid://ck1x181q75skj" path="res://assets/audio/victory.ogg" id="2_g1py2"]
+[ext_resource type="AudioStream" uid="uid://bgkena6bp47aa" path="res://assets/audio/defeat.ogg" id="3_oi2p5"]
 
 [sub_resource type="Animation" id="Animation_adju6"]
 length = 0.001
@@ -68,6 +70,16 @@ libraries = {
 "": SubResource("AnimationLibrary_yg6vw")
 }
 autoplay = "in"
+
+[node name="VictoryStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_g1py2")
+volume_db = -10.0
+bus = &"sfx"
+
+[node name="DefeatStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_oi2p5")
+volume_db = -10.0
+bus = &"sfx"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
