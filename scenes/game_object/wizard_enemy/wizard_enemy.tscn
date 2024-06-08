@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://biw4lngphcynu"]
+[gd_scene load_steps=19 format=3 uid="uid://biw4lngphcynu"]
 
 [ext_resource type="PackedScene" uid="uid://d32bhk07dm6w8" path="res://scenes/component/health_component.tscn" id="1_5bkfq"]
 [ext_resource type="Texture2D" uid="uid://bj74fspmmt8fp" path="res://scenes/game_object/wizard_enemy/wizard_enemy.png" id="1_beb02"]
@@ -9,6 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://ci3popyfx4vbv" path="res://scenes/component/vial_drop_component.tscn" id="4_blfg5"]
 [ext_resource type="PackedScene" uid="uid://bkkq5ohgbnkxw" path="res://scenes/component/hit_flash_component.tscn" id="5_ytbt1"]
 [ext_resource type="Shader" path="res://scenes/component/hit_flash_component.gdshader" id="6_qmngi"]
+[ext_resource type="PackedScene" uid="uid://bh478361trp2r" path="res://scenes/component/random_audio_stream_player_2d_component.tscn" id="8_xc8j1"]
+[ext_resource type="AudioStream" uid="uid://ckjo8r6fns8s1" path="res://assets/audio/footstep_carpet_000.ogg" id="9_c6s0t"]
+[ext_resource type="AudioStream" uid="uid://bhxo10h1q3e2" path="res://assets/audio/footstep_carpet_001.ogg" id="10_8bpt1"]
+[ext_resource type="AudioStream" uid="uid://dycvhorndvf1c" path="res://assets/audio/footstep_carpet_002.ogg" id="11_ujfiq"]
+[ext_resource type="AudioStream" uid="uid://dqqkhujcgssj6" path="res://assets/audio/footstep_carpet_003.ogg" id="12_66386"]
+[ext_resource type="AudioStream" uid="uid://bmnew52u2j6r5" path="res://assets/audio/footstep_carpet_004.ogg" id="13_ixqs1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4r80n"]
 resource_local_to_scene = true
@@ -45,6 +51,10 @@ hit_flash_material = SubResource("ShaderMaterial_4r80n")
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("2_aml71")]
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
+
+[node name="HitRandomAudioPlayerComponent" parent="." instance=ExtResource("8_xc8j1")]
+max_distance = 300.0
+streams = Array[AudioStream]([ExtResource("9_c6s0t"), ExtResource("10_8bpt1"), ExtResource("11_ujfiq"), ExtResource("12_66386"), ExtResource("13_ixqs1")])
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_2ak7l")]
 health_component = NodePath("../HealthComponent")
