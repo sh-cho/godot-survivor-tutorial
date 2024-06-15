@@ -127,9 +127,11 @@ size_flags_horizontal = 3
 
 [node name="HSlider" type="HSlider" parent="PanelContainer/MarginContainer/HBoxContainer/col2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+value = 50.0
 
 [node name="HSlider2" type="HSlider" parent="PanelContainer/MarginContainer/HBoxContainer/col2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
+value = 50.0
 editable = false
 
 [node name="HScrollBar" type="HScrollBar" parent="PanelContainer/MarginContainer/HBoxContainer/col2/HBoxContainer/VBoxContainer"]
