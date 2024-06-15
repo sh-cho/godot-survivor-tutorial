@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5sbh5j7uyjn7"]
+
+[ext_resource type="Script" path="res://scenes/autoload/screen_transition.gd" id="1_7eu4g"]
+[ext_resource type="Shader" path="res://scenes/autoload/screen_transition.gdshader" id="1_olvo7"]
+
+[sub_resource type="Animation" id="Animation_3tm0m"]
+resource_name = "default"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/progress")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-0.5, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_transitioned_halfway"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_g04fo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_am3fo"]
+_data = {
+"RESET": SubResource("Animation_g04fo"),
+"default": SubResource("Animation_3tm0m")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sdpe1"]
+shader = ExtResource("1_olvo7")
+shader_parameter/progress = 0.4
+shader_parameter/diamondPixelSize = 20.0
+shader_parameter/fill_in = true
+
+[node name="ScreenTransition" type="CanvasLayer"]
+process_mode = 3
+layer = 5
+script = ExtResource("1_7eu4g")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_am3fo")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_sdpe1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.247059, 0.14902, 0.192157, 1)
