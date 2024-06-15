@@ -34,6 +34,13 @@ func add_meta_upgrade(upgrade: MetaUpgrade):
 		}
 	
 	save_data["meta_upgrades"][upgrade.id]["quantity"] += 1
+	save()
+
+
+func get_upgrade_count(upgrade_id: String) -> int:
+	if save_data["meta_upgrades"].has(upgrade_id):
+		return save_data["meta_upgrades"][upgrade_id]["quantity"]
+	return 0
 
 
 func on_experience_collected(number: float):
