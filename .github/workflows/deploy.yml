@@ -2,19 +2,12 @@ name: deploy to gh-pages
 
 on:
   workflow_dispatch:
-    inputs:
-      deploy_others:
-        description: 'Deploy others'
-        required: false
-        default: false
-        type: boolean
   push:
     branches:
       - main
 
 jobs:
   build-web:
-    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_others == false)
     strategy:
       matrix:
         GODOT_VERSION: ["4.2.2"]
@@ -64,53 +57,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-  build-others:
-    if: github.event_name == 'workflow_dispatch' && github.event.inputs.deploy_others == true
-    # TODO: reusable workflow?
-    strategy:
-      matrix:
-        GODOT_VERSION: ["4.2.2"]
-    runs-on: ubuntu-latest
-    container:
-      image: barichello/godot-ci:${{ matrix.GODOT_VERSION }}
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Godot build environment
-        run: |
-          mkdir -v -p ~/.local/share/godot/export_templates
-          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
-        env:
-          GODOT_VERSION: ${{ matrix.GODOT_VERSION }}
-
-      - name: build macOS
-        run: |
-          mkdir -v -p build/macOS
-          godot -v --headless --export-release "Web" build/macOS/arena-arena.app.zip
-
-      # TODO: rcedit?
-      - name: build Windows
-        run: |
-          mkdir -v -p build/windows
-          godot -v --headless --export-release "Windows Desktop" build/windows/arena-arena.exe
-
-      - name: build Linux/X11 (x86_64)
-        run: |
-          mkdir -v -p build/linux
-          godot -v --headless --export-release "Linux/X11 (x86_64)" build/linux/arena-arena.x86_64
-
-      - name: build Linux/X11 (arm64)
-        run: |
-          mkdir -v -p build/linux
-          godot -v --headless --export-release "Linux/X11 (arm64)" build/linux/arena-arena.arm64
-
-      # Upload
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build
-          path: build
-          retention-days: 1
 
