@@ -27,7 +27,7 @@ jobs:
       - name: build macOS
         run: |
           mkdir -v -p build/macOS
-          godot -v --headless --export-release "Web" build/macOS/arena-arena.app.zip
+          godot -v --headless --export-release "macOS" build/macOS/arena-arena.app.zip
 
       # TODO: rcedit?
       - name: build Windows
@@ -35,14 +35,10 @@ jobs:
           mkdir -v -p build/windows
           godot -v --headless --export-release "Windows Desktop" build/windows/arena-arena.exe
 
-      - name: build Linux/X11 (x86_64)
+      - name: build Linux/X11 (x86_64, arm64)
         run: |
           mkdir -v -p build/linux
           godot -v --headless --export-release "Linux/X11 (x86_64)" build/linux/arena-arena.x86_64
-
-      - name: build Linux/X11 (arm64)
-        run: |
-          mkdir -v -p build/linux
           godot -v --headless --export-release "Linux/X11 (arm64)" build/linux/arena-arena.arm64
 
       # Upload
