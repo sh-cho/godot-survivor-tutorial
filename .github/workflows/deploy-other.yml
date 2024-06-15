@@ -1,5 +1,5 @@
 
-name: deploy to gh-pages
+name: deploy other OSes
 
 on:
   workflow_dispatch:
